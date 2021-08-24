@@ -15,7 +15,7 @@ code {
 .footer {
   margin-top: 1rem;
   padding: 1rem;
-  background-color: rgb(255, 255, 255);
+  background-color: #e0e4e7;
   position: fixed;
   bottom: 0;
   left: 0;
@@ -25,4 +25,8 @@ code {
 
 .jumbotron {
   background-color: rgb(209, 229, 248) !important;
+}
+
+.card {
+  border: black;
 }
