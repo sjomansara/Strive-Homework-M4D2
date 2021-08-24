@@ -12,7 +12,7 @@ code {
     monospace;
 }
 
-.footer{
+.footer {
   margin-top: 1rem;
   padding: 1rem;
   background-color: rgb(255, 255, 255);
@@ -21,4 +21,8 @@ code {
   left: 0;
   width: 100%;
   text-align: center;
+}
+
+.jumbotron {
+  background-color: rgb(209, 229, 248) !important;
 }
