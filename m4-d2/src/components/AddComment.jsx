@@ -10,27 +10,7 @@ const AddComment = (props) => {
     }
     
     const onSubmitComment = async () => {
-        // try {
-        //     const response = await fetch(url, {
-        //         method,
-        //         body: JSON.stringify(newMovie),
-        //         headers: {
-        //             "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2MTFkMGNkODJkNTI2MjAwMTViNmRkMTEiLCJpYXQiOjE2Mjk0NTIxNTQsImV4cCI6MTYzMDY2MTc1NH0.S8Gl9mtXGAYHdVRvPHYUzL4mfMV5WCSJ6ss_4hIbm3o",
-        //             "Content-Type": "application/json",
-        //         }
-        //     })
-    
-        //     if(response.ok){
-        //         const movieResponse = await response.json()
-        //         return movieResponse
-        //     }
-    
-        // } catch (error){
-        //     console.log(error)
-        // }finally{
-        //     console.log("Movie submitted")
-        // }
-
+        
         let newComment = {
             comment: commentString,
             rate: 5,
