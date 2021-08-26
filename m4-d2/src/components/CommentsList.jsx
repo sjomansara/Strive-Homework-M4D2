@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import SingleComment from "./SingleComment";
 
 const CommentsList = (props) => {
     const [comments, setComments] = useState([])
@@ -24,7 +25,7 @@ const CommentsList = (props) => {
     return (
         <ul>
             {comments.map((comment) => (
-                <li>{comment.comment}</li>
+                <SingleComment key={Math.random()} comment={comment.comment} />
             ))}
         </ul>
     )
