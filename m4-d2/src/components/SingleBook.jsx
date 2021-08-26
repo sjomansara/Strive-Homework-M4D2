@@ -11,15 +11,15 @@ const SingleBook = (props) => {
 
     let commentAreaDiv = <React.Fragment />
     if (showCommentArea) {
-        commentAreaDiv = <CommentArea />
+        commentAreaDiv = <CommentArea asin={props.asin} />
     } else {
         commentAreaDiv = <React.Fragment />
     }
 
     return (
         <Col key={props.asin}>
-            <div className="card mt-5 pb-3" onClick={onBookClick}>
-                <img src={props.img} className="card-img-top" alt="..." />
+            <div className="card mt-5 pb-3">
+                <img src={props.img} className="card-img-top" alt="..." onClick={onBookClick}/>
                 <div className="mt-3 text-center">
                     <h6>{props.title}</h6>
                 </div>

@@ -1,14 +1,13 @@
 import React from "react";
-import { Form } from "react-bootstrap";
+import AddComment from "./AddComment";
+import CommentsList from "./CommentsList";
 
-const CommentArea = () => {
+const CommentArea = (props) => {
     return (
-        <Form>
-            <Form.Group controlId="exampleForm.ControlInput1" className="mt-3">
-                <Form.Label>Leave a comment:</Form.Label>
-                <Form.Control type="text" placeholder="Type here" />
-            </Form.Group>
-        </Form>
+        <>
+            <AddComment asin={props.asin}/>
+            <CommentsList asin={props.asin} />
+        </>
     )
 }
   
