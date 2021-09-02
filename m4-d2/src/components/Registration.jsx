@@ -32,6 +32,9 @@ const Registration = () => {
             } else if (userInfo.lastName.length < 3 && userInfo.lastName !== "") {
                 setIsError(true)
                 setErrorMessage("Last name must be at least 3 characters.")
+            } else if (userInfo.password !== userInfo.passwordConfirm) {
+                setIsError(true)
+                setErrorMessage("Password fields are not equal.")
             } else {
                 setIsError(false)
             }
@@ -74,7 +77,7 @@ const Registration = () => {
                         <Form.Control id="passwordConfirm" onChange={onFormChange} type="password" placeholder="Confirm Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
                     </Form.Group>
                     <Form.Group controlId="formGroupPassword" className="d-flex justify-content-center">
-                        <Button type='submit' variant="info">Submit</Button>
+                        <Button disabled={isError} type='submit' variant="info">Submit</Button>
                     </Form.Group>
                 </Form>
             </Container>
