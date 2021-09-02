@@ -1,39 +1,85 @@
-import React from "react"
-import { Form, Row, Col, Container, Button } from "react-bootstrap";
+import React, { useState } from "react"
+import { Form, Row, Col, Container, Button, Alert } from "react-bootstrap";
+import _ from "lodash"
 
-const Registration = () => (
-    <>
-    <h1 className="mt-5 ml-5 text-center">Register</h1>
-    <Container fluid className="d-flex justify-content-center">
-    <Form className="mt-5 ml-5 col-6">
-    <Row>
-      <Col>
-        <Form.Label>First Name</Form.Label>
-        <Form.Control placeholder="First name" />
-      </Col>
-      <Col>
-        <Form.Label>Last Name</Form.Label>
-        <Form.Control placeholder="Last name" />
-      </Col>
-    </Row>
-    <Form.Group className="mt-3" controlId="formGroupEmail">
-        <Form.Label>Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-    </Form.Group>
-    <Form.Group controlId="formGroupPassword">
-        <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Enter Password" />
-    </Form.Group>
-    <Form.Group controlId="formGroupPassword">
-        <Form.Label>Confirm Password</Form.Label>
-        <Form.Control type="password" placeholder="Confirm Password" />
-    </Form.Group>
-    <Form.Group controlId="formGroupPassword" className="d-flex justify-content-center">
-        <Button type='submit' variant="info">Submit</Button>
-    </Form.Group>
-    </Form>
-    </Container>
-    </>
-  );
+const Registration = () => {
+    const initialState = {
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+        passwordConfirm: ""
+    }
+
+    const [userData, setUserData] = useState(initialState)
+    const [isError, setIsError] = useState(false)
+    const [errorMessage, setErrorMessage] = useState("")
+
+    const onFormChange = (event) => {
+        let stateClone = userData
+        let key = event.target.id
+        stateClone[key] = event.target.value
+        setUserData(stateClone)
+        checkIsError(userData)
+        console.log(userData)
+    }
+
+    const checkIsError = (userInfo) => {
+        if (!_.isEqual(userData, initialState)) {
+            if (userInfo.firstName.length < 2) {
+                setIsError(true)
+                setErrorMessage("First name must be at least 2 characters.")
+            } else if (userInfo.lastName.length < 3 && userInfo.lastName !== "") {
+                setIsError(true)
+                setErrorMessage("Last name must be at least 3 characters.")
+            } else {
+                setIsError(false)
+            }
+        } else {
+            setIsError(false)
+        }
+    }
+
+    return (
+        <>
+            <h1 className="mt-5 ml-5 text-center">Register</h1>
+            {
+                isError &&
+                <Alert variant="danger" className="">
+                    {errorMessage}
+                </Alert>
+            }
+            <Container fluid className="d-flex justify-content-center">
+                <Form className="mt-5 ml-5 col-6">
+                    <Row>
+                    <Col>
+                        <Form.Label>First Name</Form.Label>
+                        <Form.Control id="firstName" placeholder="First name" required onChange={onFormChange} />
+                    </Col>
+                    <Col>
+                        <Form.Label>Last Name</Form.Label>
+                        <Form.Control id="lastName" onChange={onFormChange} placeholder="Last name" required />
+                    </Col>
+                    </Row>
+                    <Form.Group className="mt-3" controlId="formGroupEmail">
+                        <Form.Label>Email address</Form.Label>
+                        <Form.Control id="email" onChange={onFormChange} type="email" placeholder="Enter email" required />
+                    </Form.Group>
+                    <Form.Group controlId="formGroupPassword">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control id="password" onChange={onFormChange} type="password" placeholder="Enter Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
+                    </Form.Group>
+                    <Form.Group controlId="formGroupPassword">
+                        <Form.Label>Confirm Password</Form.Label>
+                        <Form.Control id="passwordConfirm" onChange={onFormChange} type="password" placeholder="Confirm Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
+                    </Form.Group>
+                    <Form.Group controlId="formGroupPassword" className="d-flex justify-content-center">
+                        <Button type='submit' variant="info">Submit</Button>
+                    </Form.Group>
+                </Form>
+            </Container>
+        </>
+    )
+    };
   
   export default Registration;
