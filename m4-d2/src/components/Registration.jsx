@@ -14,6 +14,7 @@ const Registration = () => {
     const [userData, setUserData] = useState(initialState)
     const [isError, setIsError] = useState(false)
     const [errorMessage, setErrorMessage] = useState("")
+    const [hasEmptyFields, setHasEmptyFields] = useState(false)
 
     const onFormChange = (event) => {
         let stateClone = userData
@@ -21,7 +22,24 @@ const Registration = () => {
         stateClone[key] = event.target.value
         setUserData(stateClone)
         checkIsError(userData)
+        checkForEmptyFields(userData)
         console.log(userData)
+    }
+
+    const checkForEmptyFields = (userInfo) => {
+        if (userInfo.firstName === initialState.firstName) {
+            setHasEmptyFields(true)
+        } else if (userInfo.lastName === initialState.lastName) {
+            setHasEmptyFields(true)
+        } else if (userInfo.email === initialState.email) {
+            setHasEmptyFields(true)
+        } else if (userInfo.password === initialState.password) {
+            setHasEmptyFields(true)
+        } else if (userInfo.passwordConfirm === initialState.passwordConfirm) {
+            setHasEmptyFields(true)
+        } else {
+            setHasEmptyFields(false)
+        }
     }
 
     const checkIsError = (userInfo) => {
@@ -77,7 +95,7 @@ const Registration = () => {
                         <Form.Control id="passwordConfirm" onChange={onFormChange} type="password" placeholder="Confirm Password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" />
                     </Form.Group>
                     <Form.Group controlId="formGroupPassword" className="d-flex justify-content-center">
-                        <Button disabled={isError} type='submit' variant="info">Submit</Button>
+                        <Button disabled={isError || hasEmptyFields} type='submit' variant="info">Submit</Button>
                     </Form.Group>
                 </Form>
             </Container>
