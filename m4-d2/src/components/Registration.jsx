@@ -22,7 +22,7 @@ const Registration = () => (
     </Form.Group>
     <Form.Group controlId="formGroupPassword">
         <Form.Label>Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
+        <Form.Control type="password" placeholder="Enter Password" />
     </Form.Group>
     <Form.Group controlId="formGroupPassword">
         <Form.Label>Confirm Password</Form.Label>
