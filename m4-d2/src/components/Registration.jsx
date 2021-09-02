@@ -28,10 +28,10 @@ const Registration = () => (
         <Form.Label>Confirm Password</Form.Label>
         <Form.Control type="password" placeholder="Confirm Password" />
     </Form.Group>
+    <Form.Group controlId="formGroupPassword" className="d-flex justify-content-center">
+        <Button type='submit' variant="info">Submit</Button>
+    </Form.Group>
     </Form>
-    </Container>
-    <Container className="d-flex justify-content-center mt-3">
-        <Button variant="info" className="d-flex justify-content-center">Submit</Button>
     </Container>
     </>
   );
